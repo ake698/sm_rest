@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sm_rest.mapper.orderMapper">
+	<select id="getOrder" parameterType="int" resultMap="orderRes">
+		select *
+		from `order` o ,userinfo u where o.userid=u.userid and u.userid=#{userid}
+	</select>
+	<resultMap type="order" id="orderRes">
+		<id property="orderid" column="orderid" />
+		<result property="foods" column="foods" />
+		<result property="money" column="money" />
+		<result property="userid" column="userid" />
+		<collection property="user" ofType="userinfo">
+			<id property="userid" column="userid"/>
+			<result property="username" column="username"/>
+			<result property="password" column="password"/>
+			<result property="phone" column="phone"/>
+		</collection>
+	</resultMap>
+
+	<select id="getAllOrder" resultMap="orderRes">
+		select *
+		from `order` o ,userinfo u where o.userid=u.userid
+	</select>
+	
+	<select id="getAllUserId" parameterType="int" resultMap="orderRes">
+		select *
+		from `order` o ,userinfo u where o.userid=u.userid and u.userid=#{id}
+	</select>
+	
+	<delete id="delOrder" parameterType="int">
+		delete from `order` where
+		orderid=#{orderid};
+	</delete>
+	<update id="updOrder" parameterType="order">
+		update `order` set
+		foods=#{foods},userid=#{userid},money=#{money} where
+		orderid=#{orderid}
+	</update>
+	<insert id="insOrder" parameterType="order">
+		insert into
+		`order`(foods,userid,money) values(#{foods},#{userid},#{money})
+	</insert>
+</mapper>

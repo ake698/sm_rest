@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<typeAliases>
+	<package name="com.sm_rest.bean"/>
+</typeAliases>
+    <environments default="development">
+          <environment id="development">
+            <transactionManager type="JDBC" />
+             <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+               <property name="driver" value="com.mysql.jdbc.Driver" />
+               <property name="url" value="jdbc:mysql://localhost:3306/jd_rest" />
+               <property name="username" value="root" />
+               <property name="password" value="redhat" />
+             </dataSource>
+         </environment>
+     </environments>
+
+     <mappers>
+     	<mapper resource="com/sm_rest/mapper/userMapper.xml"/>
+		<mapper resource="com/sm_rest/mapper/foodMapper.xml"/>
+		<mapper resource="com/sm_rest/mapper/orderMapper.xml"/>
+     	</mappers>
+     	
+ </configuration>

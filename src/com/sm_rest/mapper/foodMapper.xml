@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sm_rest.mapper.foodMapper">
+	<select id="getFood" parameterType="int" resultType="food">
+		select *
+		from food where foodid=#{foodid}
+	</select>
+	<delete id="delFood" parameterType="int">
+		delete from food where
+		foodid=#{foodid};
+	</delete>
+	<update id="updFood" parameterType="food">
+		update food set
+		foodname=#{foodname},cost=#{cost} where
+		foodid=#{foodid}
+	</update>
+	<select id="getAllFood" resultType="food">
+		select * from food
+	</select>
+	<insert id="insFood" parameterType="food">
+		insert into
+		food(foodname,cost) values(#{foodname},#{cost})
+	</insert>
+</mapper>
